@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="14A299l" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="UVl-rb-IT9">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Alarms-->
+        <scene sceneID="c7f-xh-Uq7">
+            <objects>
+                <tableViewController id="tGu-o7-ZMm" customClass="AlarmListTableViewController" customModule="alarm" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ixJ-hB-2q6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlarmPrototypeCell" id="myh-pB-tag">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="myh-pB-tag" id="SLb-f6-7jj">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tGu-o7-ZMm" id="7vG-Oj-tXf"/>
+                            <outlet property="delegate" destination="tGu-o7-ZMm" id="9wj-rt-Yub"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Alarms" id="1qX-Np-lzw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hog-kj-P0D">
+                            <connections>
+                                <segue destination="IyW-k2-b4b" kind="modal" id="5Pb-R1-nHi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hW9-xL-bHL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-39" y="159"/>
+        </scene>
+        <!--Add Alarm-->
+        <scene sceneID="yyQ-yG-cSv">
+            <objects>
+                <viewController id="QkW-Jw-3CB" customClass="AddAlarmViewController" customModule="alarm" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0wn-vA-LRj"/>
+                        <viewControllerLayoutGuide type="bottom" id="xdJ-dk-GL9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KSM-XL-Y0d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="eau-3s-V9y">
+                                <rect key="frame" x="0.0" y="64" width="320" height="480"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alarm" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tMc-TJ-bfC">
+                                        <rect key="frame" x="72" y="215" width="240" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="owJ-65-Ebd" customClass="BEMAnalogClockView">
+                                        <rect key="frame" x="97" y="281" width="127" height="127"/>
+                                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="owJ-65-Ebd" secondAttribute="height" multiplier="1:1" id="b3q-St-Vfk"/>
+                                        </constraints>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="48" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1eg-0M-Vng">
+                                        <rect key="frame" x="14" y="58" width="189" height="75"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="48"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="QkW-Jw-3CB" id="VQO-B8-1wQ"/>
+                                        </connections>
+                                    </textField>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9cR-aB-Bbj" customClass="MultiSelectSegmentedControl">
+                                        <rect key="frame" x="14" y="141" width="293" height="29"/>
+                                        <segments>
+                                            <segment title="Mon"/>
+                                            <segment title="Tue"/>
+                                            <segment title="Wed"/>
+                                            <segment title="Thu"/>
+                                            <segment title="Fri"/>
+                                            <segment title="Sat"/>
+                                            <segment title="Sun"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21s-AL-waG">
+                                        <rect key="frame" x="111" y="20" width="98" height="30"/>
+                                        <state key="normal" title="Test Text Field">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="printTextFieldContents:" destination="QkW-Jw-3CB" eventType="touchUpInside" id="ORA-L9-0I4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbc-mQ-IQY">
+                                        <rect key="frame" x="14" y="177" width="293" height="30"/>
+                                        <state key="normal" title="Select Ringtone">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="0fy-5U-qA4" kind="modal" identifier="songPicker" id="1GX-Jd-IiC"/>
+                                        </connections>
+                                    </button>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8R2-0z-na7">
+                                        <rect key="frame" x="225" y="82" width="82" height="29"/>
+                                        <segments>
+                                            <segment title="AM"/>
+                                            <segment title="PM"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hcl-Qv-1Rb">
+                                        <rect key="frame" x="14" y="220" width="42" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="480" id="VhC-ka-8aH"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eau-3s-V9y" firstAttribute="top" secondItem="0wn-vA-LRj" secondAttribute="bottom" constant="1" id="naf-Lf-btv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Alarm" id="g1q-jN-TA4">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="si1-J5-m2n">
+                            <connections>
+                                <segue destination="Dlx-7v-24R" kind="unwind" unwindAction="unWindToAlarmList:" id="OJc-05-8nN"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="2zh-xW-WRI">
+                            <connections>
+                                <action selector="doShit:" destination="QkW-Jw-3CB" id="1SX-bT-J9Y"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="AMPMButton" destination="8R2-0z-na7" id="Y2Y-no-CcY"/>
+                        <outlet property="daySelection" destination="9cR-aB-Bbj" id="vFa-TB-FsM"/>
+                        <outlet property="labelField" destination="tMc-TJ-bfC" id="4nf-l1-7Wp"/>
+                        <outlet property="myClock1" destination="owJ-65-Ebd" id="Wgr-kD-iVV"/>
+                        <outlet property="scrollView" destination="eau-3s-V9y" id="5xg-F9-GLB"/>
+                        <outlet property="selectRingtone" destination="nbc-mQ-IQY" id="CSx-sg-UBW"/>
+                        <outlet property="timeEntryField" destination="1eg-0M-Vng" id="Q7h-ti-Azy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SoG-S2-OTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Dlx-7v-24R" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="865" y="153"/>
+        </scene>
+        <!--Ringtones-->
+        <scene sceneID="67t-lQ-AAl">
+            <objects>
+                <tableViewController id="xuj-Y1-Zz3" customClass="SongPickerTableViewController" customModule="alarm" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="mCg-wk-Zyh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongPrototypeCell" id="8JB-Sw-cgM">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8JB-Sw-cgM" id="E6z-yt-jXb">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xuj-Y1-Zz3" id="Iuv-Nj-Voa"/>
+                            <outlet property="delegate" destination="xuj-Y1-Zz3" id="In5-Bg-aqD"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Ringtones" id="HEZ-qY-S1F">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="vWV-ZV-WB0">
+                            <connections>
+                                <segue destination="IyW-k2-b4b" kind="modal" id="YaI-OQ-yzP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XT0-FD-E26" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1831" y="153"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="EW7-PY-Zjw">
+            <objects>
+                <navigationController id="UVl-rb-IT9" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uLV-nC-xwi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="tGu-o7-ZMm" kind="relationship" relationship="rootViewController" id="qfa-zQ-p5g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DcV-fR-bOE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-486" y="153.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QAs-bG-SVa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IyW-k2-b4b" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="upH-AV-Hc4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QkW-Jw-3CB" kind="relationship" relationship="rootViewController" id="2ON-Bf-8O4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cJi-gd-geh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="416" y="139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8FD-rD-LSo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0fy-5U-qA4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M3V-Ss-iuE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xuj-Y1-Zz3" kind="relationship" relationship="rootViewController" id="fSd-f0-w2A"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d6a-NJ-Bho" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1299" y="153"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination">
+            <size key="portraitSize" width="320" height="480"/>
+            <size key="landscapeSize" width="480" height="320"/>
+        </simulatedScreenMetrics>
+    </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="YaI-OQ-yzP"/>
+    </inferredMetricsTieBreakers>
+</document>
