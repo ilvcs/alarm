@@ -26,8 +26,9 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
     @IBOutlet weak var scrollView: UIScrollView!
     // Other
     let timeRegex = "^(\\d{1,2})(\\d{2})$"
-    var origScrollViewPos = CGPoint(x: 0, y:0)
-    var selectedSong: Int?
+    // var origScrollViewPos = CGPoint(x: 0, y:0)
+    //var selectedSong: Int?
+    var alarmData: AlarmItem = AlarmItem()
     
     // ---------------------------------------------------------------------------------------------
     // ViewController
@@ -64,6 +65,8 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
         // Time Entry Text Field
         timeEntryField.borderStyle = UITextBorderStyle.RoundedRect
         
+        loadFieldValues()
+                
         super.viewDidLoad()
     }
 
@@ -71,11 +74,20 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
         super.didReceiveMemoryWarning()
     }
     
-//    func keyboardDidShow(note: NSNotification) {
-//        var offset = labelField.center
-//        offset.y -= 50
-//        scrollView.center = offset
-//    }
+    func loadFieldValues() {
+        if let t = alarmData.time {
+            self.timeEntryField.text = t
+        }
+        if let ampm = alarmData.AMPMbutton {
+            self.AMPMButton.selectedSegmentIndex = ampm
+        }
+        if let d = alarmData.days{
+            self.daySelection.selectedSegmentIndexes = alarmData.days
+        }
+        if let l = alarmData.label {
+            self.labelField.text = l
+        }
+    }
     
     // ---------------------------------------------------------------------------------------------
     // BEMAnalogClock
@@ -122,31 +134,19 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
     // ---------------------------------------------------------------------------------------------
 
     func textFieldDidBeginEditing(textField: UITextField!) {
-//        if textField == labelField {
-//            origScrollViewPos = scrollView.center
-//            var newScrollViewPos = textField.center
-//            newScrollViewPos.y -= 50
-//            scrollView.center = newScrollViewPos
-//        }
         scrollView.setContentOffset(CGPointMake(0, textField.center.y-50), animated: true)
     }
     
     func textFieldDidEndEditing(textField: UITextField!) {
-//        if textField == labelField {
-//            scrollView.center = origScrollViewPos
-//        }
         scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
-
     }
     
     func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
         
         if textField == timeEntryField {
             var newText = ((textField.text as NSString).stringByReplacingCharactersInRange(range, withString: string))
-            newText = (newText as NSString).stringByReplacingOccurrencesOfString(":", withString: "")
-            var oldTextRange = NSMakeRange(0, (newText as NSString).length)
-            var regex = NSRegularExpression(pattern: timeRegex, options: nil, error: nil)
-            var matches = regex.matchesInString(newText, options: nil, range: oldTextRange)
+            newText = removeColonFromString(newText)
+            newText = removeLeadingZeroesFromString(newText)
             
             // after stripping the colon, don't allow more than 4 digits
             if (newText as NSString).length > 4 {
@@ -155,23 +155,9 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
                 textField.resignFirstResponder()
                 return false
             }
-
-            // if we matched either 3 or 4 digits, add a colon
-            if matches.count == 1 {
-                textField.text = newText
-                var match = regex.replacementStringForResult((matches[0] as NSTextCheckingResult), inString: textField.text, offset: 0, template: "$1:$2")
-                textField.text = match
-                return false
-            }
-            // else didn't match enough digits, remove previous colons if any
-            else {
-                if (newText as NSString).length < 3 {
-                    textField.text = newText
-                    return false
-                }
-            }
             
-            return true
+            textField.text = addColonToString(newText)
+            return false
         }
         else {
             return true
@@ -187,59 +173,154 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
         timeEntryField.resignFirstResponder()
     }
     
+    func addColonToString(text: String) -> String {
+        if (text as NSString).length == 1 {
+            return "00:0" + text
+        } else if (text as NSString).length == 2 {
+            return "00:" + text
+        } else if (text as NSString).length > 4 {
+            return text
+        }
+        
+        var oldTextRange = NSMakeRange(0, (text as NSString).length)
+        var regex = NSRegularExpression(pattern: timeRegex, options: nil, error: nil)
+        var matches = regex.matchesInString(text, options: nil, range: oldTextRange)
+        var match = regex.replacementStringForResult((matches[0] as NSTextCheckingResult), inString: text, offset: 0, template: "$1:$2")
+        return match
+    }
+    
+    func removeColonFromString(text:String) -> String {
+        return (text as NSString).stringByReplacingOccurrencesOfString(":", withString: "")
+    }
+    
+    func removeLeadingZeroesFromString(text: String) -> String {
+        return NSString(format: "%d", text.toInt()!)
+    }
+    
     // ---------------------------------------------------------------------------------------------
     // Actions
     // ---------------------------------------------------------------------------------------------
 
-    
-    @IBAction func alert() {
-        var alert:UIAlertView = UIAlertView(title: "Shitnigga", message: "THis is an alert", delegate: self, cancelButtonTitle: "dont do it bitch")
-        alert.addButtonWithTitle("fuck you he did it")
-        alert.show()
-    }
-    
     @IBAction func doShit(sender: UIBarButtonItem) {
         var futureDate: NSDate?
         futureDate = NSDate(timeIntervalSinceNow: 5)
         var notification: UILocalNotification = UILocalNotification()
         // notification.repeatInterval = NSCalendarUnit.CalendarUnitWeekdayOrdinal
-        notification.soundName = "Music/Election Theme.m4r"
+        
+        if let s = alarmData.songIndex {
+            var songList = [AnyObject]()
+            var ringtonePath = NSBundle.mainBundle().resourcePath
+            ringtonePath = ringtonePath.stringByAppendingPathComponent("Ringtones")
+            var ringtoneContents = NSFileManager.defaultManager().contentsOfDirectoryAtPath(ringtonePath, error: nil)
+            var selectedSongPath = "Ringtones/" + (ringtoneContents[s] as String)
+            notification.soundName = selectedSongPath
+        } else {
+            notification.soundName = "Ringtones/Election Theme.m4r"
+        }
+        
         notification.fireDate = futureDate
         notification.alertAction = "OK"
-        notification.alertBody = "This is an ALERT"
+        
+        if let l = alarmData.label {
+            notification.alertBody = "This is an alarm for \(l)"
+        }
+        else {
+            notification.alertBody = "This is a generic alarm."
+        }
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
     @IBAction func printTextFieldContents(sender: AnyObject) {
+        println()
         println("Entered time: \(timeEntryField.text)")
         println("AMPM Button: \(AMPMButton.selectedSegmentIndex)")
         println("Days: \(daySelection.selectedSegmentIndexes)")
+        
         var enteredTime = ((timeEntryField.text as NSString).stringByReplacingOccurrencesOfString(":", withString: "") as NSString)
         if enteredTime.length >= 3 {
             var hours = enteredTime.substringToIndex(2)
             var minutes = enteredTime.substringFromIndex(2)
             var totalSeconds = (hours as NSString).integerValue*3600 + (minutes as NSString).integerValue*60
             var date: NSDate! = NSDate(timeIntervalSinceNow: Double(totalSeconds))
-            println(date)
+            println("Time corresponds to NSDate: \(date)")
         }
-        println("Label: \(labelField.text)")
         
-        if let s = selectedSong {
-            println("Selected song index: \(s)")
+        if labelField.text == "" {
+            println("No label text")
+        } else {
+            println("Label: \(labelField.text)")
         }
+        
+        if let s = alarmData.songIndex {
+            println("Selected song index: \(s)")
+        } else {
+            println("No selected song")
+        }
+        println()
         
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         
-        if let identifer = segue.identifier {
-            if identifer == "songPicker" {
-                if let s = selectedSong {
-                    var navigationController = segue.destinationViewController as UINavigationController
-                    var songPickerController = navigationController.topViewController as SongPickerTableViewController
-                    songPickerController.selected = s
+        if let id = segue.identifier {
+            
+            alarmData.AMPMbutton = AMPMButton.selectedSegmentIndex
+            
+            
+            // if users input an invalid time, take the modulo
+            var uncheckedTime = timeEntryField.text
+            /*uncheckedTime = (uncheckedTime as NSString).stringByReplacingOccurrencesOfString(":", withString: "")
+            if uncheckedTime.toInt()!/1000 > 0 {
+                uncheckedTime = String(uncheckedTime.toInt()!%1200)
+                var matches = regex.matchesInString(uncheckedTime, options: nil, range: NSMakeRange(0, (newText as NSString).length))
+                if matches.count == 1 {
+                    var match = regex.replacementStringForResult((matches[0] as NSTextCheckingResult), inString: textField.text, offset: 0, template: "$1:$2")
+                    textField.text = match
+                    return false
                 }
+            }*/
+            alarmData.time = uncheckedTime
+            
+            alarmData.days = (daySelection.selectedSegmentIndexes as NSMutableIndexSet)
+            alarmData.label = labelField.text
+            if let s = alarmData.songIndex {
+                alarmData.songIndex = s
+            } else {
+                alarmData.songIndex = 0
+            }
+            
+            if id == "songPicker" {
+                var navigationController = segue.destinationViewController as UINavigationController
+                var songPickerController = navigationController.topViewController as SongPickerTableViewController
+                songPickerController.alarmData = self.alarmData
+            } else if id == "doneWithAlarm"{
+                var navigationController = segue.destinationViewController as UINavigationController
+                var alarmListController = navigationController.topViewController as AlarmListTableViewController
+                alarmListController.alarmList.append(alarmData)
+                writeToFile(alarmData)
             }
         }
+    }
+    
+    func writeToFile(a: AlarmItem) {
+        var file = "test.txt"
+        let dirs : [String]? = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String]
+        let directories:[String] = dirs!;
+        let dir = directories[0]; //documents directory
+        let path = dir.stringByAppendingPathComponent(file);
+        
+        //println(path)
+        
+        var text = a.label! + "\n" + a.time! + "\n" + String(a.AMPMbutton!) + "\n"
+       
+        var index = a.days?.firstIndex
+        while index != NSNotFound {
+            text += String(index! as Int) + " "
+            index = a.days?.indexGreaterThanIndex(index!)
+        }
+        
+        text += "\n" + String(a.songIndex!)
+
+        text.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
     }
 }

@@ -9,10 +9,13 @@
 import UIKit
 
 class AlarmItem: NSObject {
-    var hour: Int?
-    var minute: Int?
+    var time: String?
     var AMPMbutton: Int?
     var days: NSMutableIndexSet?
     var label: String?
+    var songIndex: Int?
     
+    override init () {
+        
+    }
 }

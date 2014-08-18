@@ -9,10 +9,12 @@
 import UIKit
 
 class AlarmListTableViewController: UITableViewController {
-        
+    
+    var alarmList = [AlarmItem]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,29 +30,69 @@ class AlarmListTableViewController: UITableViewController {
     // #pragma mark - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return alarmList.count
     }
     
     @IBAction func unWindToAlarmList(segue: UIStoryboardSegue) {
     }
 
-    /*
+    
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell? {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCellWithIdentifier("AlarmPrototypeCell", forIndexPath: indexPath) as UITableViewCell
+        
+            var alarmData = alarmList[indexPath.row]
+            
+            if alarmData.label != "" {
+                cell.textLabel.text = alarmData.label
+            } else {
+                cell.textLabel.text = "Unnamed Alarm"
+            }
+            
+            var detailText = ""
+            if alarmData.time != "" {
+                detailText += alarmData.time!
+                if alarmData.AMPMbutton == 0 {
+                    detailText += " AM "
+                } else {
+                    detailText += " PM "
+                }
+                
+                var index = alarmData.days?.firstIndex
+                
+                while index != NSNotFound {
+                    switch (index! as Int) {
+                    case 0:
+                        detailText += "Mon "
+                    case 1:
+                        detailText += "Tue "
+                    case 2:
+                        detailText += "Wed "
+                    case 3:
+                        detailText += "Thu "
+                    case 4:
+                        detailText += "Fri "
+                    case 5:
+                        detailText += "Sat "
+                    case 6:
+                        detailText += "Sun "
+                    default:
+                        detailText += ""
+                    }
+                    index = alarmData.days?.indexGreaterThanIndex(index!)
+                }
+            }
+            cell.detailTextLabel.text = detailText
+            cell.imageView.image = UIImage(named: "Icon-60@2x.png")
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

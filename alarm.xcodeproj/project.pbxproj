@@ -32,13 +32,13 @@
 		D09D360C197FABE3001FBE1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09D360A197FABE3001FBE1C /* Main.storyboard */; };
 		D09D360E197FABE3001FBE1C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D09D360D197FABE3001FBE1C /* Images.xcassets */; };
 		D09D361A197FABE4001FBE1C /* alarmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09D3619197FABE4001FBE1C /* alarmTests.swift */; };
+		D0A595B91995B74800835B0F /* Ringtones in Resources */ = {isa = PBXBuildFile; fileRef = D0A595B81995B74800835B0F /* Ringtones */; };
 		D0D0F60F199076AD0015DDF9 /* BEMAnalogClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D0F604199076AD0015DDF9 /* BEMAnalogClockView.m */; };
 		D0D0F610199076AD0015DDF9 /* BEMHandsAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D0F606199076AD0015DDF9 /* BEMHandsAnimation.m */; };
 		D0D0F611199076AD0015DDF9 /* BEMHourHand.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D0F608199076AD0015DDF9 /* BEMHourHand.m */; };
 		D0D0F612199076AD0015DDF9 /* BEMMinuteHand.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D0F60A199076AD0015DDF9 /* BEMMinuteHand.m */; };
 		D0D0F613199076AD0015DDF9 /* BEMSecondHand.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D0F60C199076AD0015DDF9 /* BEMSecondHand.m */; };
 		D0D0F614199076AD0015DDF9 /* MultiSelectSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D0F60E199076AD0015DDF9 /* MultiSelectSegmentedControl.m */; };
-		D0F2055F199093E600B5F2F0 /* Music in Resources */ = {isa = PBXBuildFile; fileRef = D0F2055E199093E600B5F2F0 /* Music */; };
 		D0F205611990A17E00B5F2F0 /* AlarmItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F205601990A17E00B5F2F0 /* AlarmItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +82,7 @@
 		D09D3613197FABE4001FBE1C /* alarmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = alarmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09D3618197FABE4001FBE1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D09D3619197FABE4001FBE1C /* alarmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alarmTests.swift; sourceTree = "<group>"; };
+		D0A595B81995B74800835B0F /* Ringtones */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Ringtones; sourceTree = "<group>"; };
 		D0D0F5E9198F3BFD0015DDF9 /* alarm-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "alarm-Bridging-Header.h"; sourceTree = "<group>"; };
 		D0D0F603199076AD0015DDF9 /* BEMAnalogClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAnalogClockView.h; sourceTree = "<group>"; };
 		D0D0F604199076AD0015DDF9 /* BEMAnalogClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAnalogClockView.m; sourceTree = "<group>"; };
@@ -95,7 +96,6 @@
 		D0D0F60C199076AD0015DDF9 /* BEMSecondHand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMSecondHand.m; sourceTree = "<group>"; };
 		D0D0F60D199076AD0015DDF9 /* MultiSelectSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiSelectSegmentedControl.h; sourceTree = "<group>"; };
 		D0D0F60E199076AD0015DDF9 /* MultiSelectSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiSelectSegmentedControl.m; sourceTree = "<group>"; };
-		D0F2055E199093E600B5F2F0 /* Music */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Music; sourceTree = "<group>"; };
 		D0F205601990A17E00B5F2F0 /* AlarmItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,7 +193,7 @@
 				D09D3606197FABE3001FBE1C /* AppDelegate.swift */,
 				D09D360A197FABE3001FBE1C /* Main.storyboard */,
 				D09D360D197FABE3001FBE1C /* Images.xcassets */,
-				D0F2055E199093E600B5F2F0 /* Music */,
+				D0A595B81995B74800835B0F /* Ringtones */,
 				D09D3604197FABE3001FBE1C /* Supporting Files */,
 				D0F205601990A17E00B5F2F0 /* AlarmItem.swift */,
 				D05EC5A319824181006D08E7 /* AlarmListTableViewController.swift */,
@@ -324,7 +324,7 @@
 				D066CFCA19907F5F00CB7145 /* Icon-Small@2x.png in Resources */,
 				D066CFCB19907F5F00CB7145 /* Icon.png in Resources */,
 				D066CFC119907F5F00CB7145 /* Icon-60.png in Resources */,
-				D0F2055F199093E600B5F2F0 /* Music in Resources */,
+				D0A595B91995B74800835B0F /* Ringtones in Resources */,
 				D066CFCD19907F5F00CB7145 /* iTunesArtwork.png in Resources */,
 				D066CFC219907F5F00CB7145 /* Icon-60@2x.png in Resources */,
 				D066CFC619907F5F00CB7145 /* Icon-76@2x.png in Resources */,
