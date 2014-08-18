@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "alarm/AddAlarmViewController.swift"
-            timestampString = "430019774.12653"
+            timestampString = "430021023.942545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "doShit(_:)"
             landmarkType = "5">
             <Locations>
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "alarm/AddAlarmViewController.swift"
-            timestampString = "430019774.12653"
+            timestampString = "430027963.936269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
+            startingLineNumber = "342"
+            endingLineNumber = "342"
             landmarkName = "writeToFile(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -168,59 +168,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "alarm/AddAlarmViewController.swift"
-            timestampString = "430019774.12653"
+            timestampString = "430027963.936269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
             landmarkName = "writeToFile(_:)"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "alarm/AddAlarmViewController.swift"
-            timestampString = "430019774.12653"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
-            landmarkName = "prepareForSegue(_:sender:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "alarm.AddAlarmViewController.prepareForSegue (alarm.AddAlarmViewController)(Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIStoryboardSegue&gt;, sender : Swift.ImplicitlyUnwrappedOptional&lt;Swift.AnyObject&gt;) -&gt; ()"
-                  moduleName = "alarm"
-                  urlString = "file:///Users/macbookair/Desktop/alarm/alarm/AddAlarmViewController.swift"
-                  timestampString = "430017469.96146"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "268"
-                  endingLineNumber = "268"
-                  offsetFromSymbolStart = "7985">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "alarm.AddAlarmViewController.prepareForSegue (alarm.AddAlarmViewController)(Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIStoryboardSegue&gt;, sender : Swift.ImplicitlyUnwrappedOptional&lt;Swift.AnyObject&gt;) -&gt; ()"
-                  moduleName = "alarm"
-                  urlString = "file:///Users/macbookair/Desktop/alarm/alarm/AddAlarmViewController.swift"
-                  timestampString = "430017469.961752"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "268"
-                  endingLineNumber = "268"
-                  offsetFromSymbolStart = "8092">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

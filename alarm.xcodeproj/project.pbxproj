@@ -40,6 +40,7 @@
 		D0D0F613199076AD0015DDF9 /* BEMSecondHand.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D0F60C199076AD0015DDF9 /* BEMSecondHand.m */; };
 		D0D0F614199076AD0015DDF9 /* MultiSelectSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D0F60E199076AD0015DDF9 /* MultiSelectSegmentedControl.m */; };
 		D0F205611990A17E00B5F2F0 /* AlarmItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F205601990A17E00B5F2F0 /* AlarmItem.swift */; };
+		D0FBCD1919A1B57C00AB925E /* clockCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FBCD1819A1B57C00AB925E /* clockCellTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		D0D0F60D199076AD0015DDF9 /* MultiSelectSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiSelectSegmentedControl.h; sourceTree = "<group>"; };
 		D0D0F60E199076AD0015DDF9 /* MultiSelectSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiSelectSegmentedControl.m; sourceTree = "<group>"; };
 		D0F205601990A17E00B5F2F0 /* AlarmItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmItem.swift; sourceTree = "<group>"; };
+		D0FBCD1819A1B57C00AB925E /* clockCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = clockCellTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 				D09D3604197FABE3001FBE1C /* Supporting Files */,
 				D0F205601990A17E00B5F2F0 /* AlarmItem.swift */,
 				D05EC5A319824181006D08E7 /* AlarmListTableViewController.swift */,
+				D0FBCD1819A1B57C00AB925E /* clockCellTableViewCell.swift */,
 				D05DD668198F340B00348B18 /* AddAlarmViewController.swift */,
 				D05DD666198F33FF00348B18 /* SongPickerTableViewController.swift */,
 			);
@@ -361,6 +364,7 @@
 				D0D0F612199076AD0015DDF9 /* BEMMinuteHand.m in Sources */,
 				D0F205611990A17E00B5F2F0 /* AlarmItem.swift in Sources */,
 				D05EC5A519824181006D08E7 /* AlarmListTableViewController.swift in Sources */,
+				D0FBCD1919A1B57C00AB925E /* clockCellTableViewCell.swift in Sources */,
 				D0D0F60F199076AD0015DDF9 /* BEMAnalogClockView.m in Sources */,
 				D0D0F614199076AD0015DDF9 /* MultiSelectSegmentedControl.m in Sources */,
 				D0D0F613199076AD0015DDF9 /* BEMSecondHand.m in Sources */,

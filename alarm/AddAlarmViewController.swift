@@ -148,7 +148,7 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
             newText = removeColonFromString(newText)
             newText = removeLeadingZeroesFromString(newText)
             
-            // after stripping the colon, don't allow more than 4 digits
+            // after stripping the colon and leading zeroes, don't allow more than 4 digits
             if (newText as NSString).length > 4 {
                 var alert = UIAlertView(title: "Error", message: "You may only add up to 4 numbers", delegate: self, cancelButtonTitle: "OK")
                 alert.show()
@@ -194,7 +194,11 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
     }
     
     func removeLeadingZeroesFromString(text: String) -> String {
-        return NSString(format: "%d", text.toInt()!)
+        if (text as NSString).length > 0 {
+            return NSString(format: "%d", text.toInt()!)
+        }
+        
+        return text
     }
     
     // ---------------------------------------------------------------------------------------------
@@ -266,19 +270,20 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
             
             alarmData.AMPMbutton = AMPMButton.selectedSegmentIndex
             
-            
-            // if users input an invalid time, take the modulo
-            var uncheckedTime = timeEntryField.text
-            /*uncheckedTime = (uncheckedTime as NSString).stringByReplacingOccurrencesOfString(":", withString: "")
+            // if user inputs hours > 12, take the modulo
+            var uncheckedTime = removeColonFromString(timeEntryField.text)
+            uncheckedTime = removeLeadingZeroesFromString(uncheckedTime)
             if uncheckedTime.toInt()!/1000 > 0 {
                 uncheckedTime = String(uncheckedTime.toInt()!%1200)
-                var matches = regex.matchesInString(uncheckedTime, options: nil, range: NSMakeRange(0, (newText as NSString).length))
-                if matches.count == 1 {
-                    var match = regex.replacementStringForResult((matches[0] as NSTextCheckingResult), inString: textField.text, offset: 0, template: "$1:$2")
-                    textField.text = match
-                    return false
-                }
-            }*/
+                println("uncheckedTime is \(uncheckedTime)")
+            }
+            if uncheckedTime.toInt()!/10 == 0 {
+                uncheckedTime = "12:0" + uncheckedTime
+            } else if uncheckedTime.toInt()!/100 == 0 {
+                uncheckedTime = "12:" + uncheckedTime
+            } else {
+                uncheckedTime = addColonToString(uncheckedTime)
+            }
             alarmData.time = uncheckedTime
             
             alarmData.days = (daySelection.selectedSegmentIndexes as NSMutableIndexSet)
@@ -296,7 +301,7 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
             } else if id == "doneWithAlarm"{
                 var navigationController = segue.destinationViewController as UINavigationController
                 var alarmListController = navigationController.topViewController as AlarmListTableViewController
-                alarmListController.alarmList.append(alarmData)
+                //alarmListController.alarmList.append(alarmData)
                 writeToFile(alarmData)
             }
         }
@@ -311,16 +316,28 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
         
         //println(path)
         
-        var text = a.label! + "\n" + a.time! + "\n" + String(a.AMPMbutton!) + "\n"
-       
-        var index = a.days?.firstIndex
-        while index != NSNotFound {
-            text += String(index! as Int) + " "
-            index = a.days?.indexGreaterThanIndex(index!)
+        var currentContents: String
+        var fileExists = NSFileManager.defaultManager().fileExistsAtPath(path)
+        if fileExists == true {
+            currentContents = NSString.stringWithContentsOfFile(path, encoding: NSUTF8StringEncoding, error: nil) as String
+        } else {
+            currentContents = ""
         }
         
-        text += "\n" + String(a.songIndex!)
-
-        text.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
+        var text = a.label! + "\n" + a.time! + "\n" + String(a.AMPMbutton!) + "\n"
+        var stringOfDays = ""
+        if let x = a.days {
+            var index = a.days?.firstIndex
+            while index != NSNotFound {
+                stringOfDays += String(index! as Int) + " "
+                index = a.days?.indexGreaterThanIndex(index!)
+            }
+        }
+        text += stringOfDays + "\n"
+        text = text.substringToIndex(text.endIndex.predecessor()) // remove unneeded space for day of week array
+        text += "\n" + String(a.songIndex!) + "\n" + "\n"
+        
+        currentContents += text
+        currentContents.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
     }
 }

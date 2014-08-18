@@ -16,6 +16,5 @@ class AlarmItem: NSObject {
     var songIndex: Int?
     
     override init () {
-        
     }
 }
