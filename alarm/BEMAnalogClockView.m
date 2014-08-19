@@ -174,6 +174,10 @@
         self.secondHand.OffsetLengthS = self.secondHandOffsideLength;
         [self addSubview:self.secondHand];
         
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0.0);
+        [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIGraphicsEndImageContext();
+        
         if (self.enableShadows == NO) {
             self.hourHand.enableHourHandShadow = NO;
             self.minuteHand.enableMinuteHandShadow = NO;

@@ -10,7 +10,7 @@
 
 @implementation BEMHandsAnimation
 
-- (void)rotateHand:(UIView *)view rotationDegree:(float)degree{
+/*- (void)rotateHand:(UIView *)view rotationDegree:(float)degree{
     [UIView animateWithDuration:1.0
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut
@@ -18,6 +18,11 @@
                          view.transform = CGAffineTransformMakeRotation((degree)*(M_PI/180));
                      } completion:^(BOOL finished) {
                      }];
-}
+}*/
+
+
+- (void)rotateHand:(UIView *)view rotationDegree:(float)degree{
+    view.transform = CGAffineTransformMakeRotation((degree)*(M_PI/180));
+ }
 
 @end

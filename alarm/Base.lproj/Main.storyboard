@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="14A299l" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="UVl-rb-IT9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Alarms-->
@@ -74,13 +73,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                     </textField>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="owJ-65-Ebd" customClass="BEMAnalogClockView">
-                                        <rect key="frame" x="97" y="281" width="127" height="127"/>
-                                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="owJ-65-Ebd" secondAttribute="height" multiplier="1:1" id="b3q-St-Vfk"/>
-                                        </constraints>
-                                    </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="48" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1eg-0M-Vng">
                                         <rect key="frame" x="14" y="58" width="189" height="75"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="48"/>
@@ -170,7 +162,6 @@
                         <outlet property="AMPMButton" destination="8R2-0z-na7" id="Y2Y-no-CcY"/>
                         <outlet property="daySelection" destination="9cR-aB-Bbj" id="vFa-TB-FsM"/>
                         <outlet property="labelField" destination="tMc-TJ-bfC" id="4nf-l1-7Wp"/>
-                        <outlet property="myClock1" destination="owJ-65-Ebd" id="Wgr-kD-iVV"/>
                         <outlet property="scrollView" destination="eau-3s-V9y" id="5xg-F9-GLB"/>
                         <outlet property="selectRingtone" destination="nbc-mQ-IQY" id="CSx-sg-UBW"/>
                         <outlet property="timeEntryField" destination="1eg-0M-Vng" id="Q7h-ti-Azy"/>

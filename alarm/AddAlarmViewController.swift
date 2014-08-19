@@ -18,7 +18,7 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
     @IBOutlet weak var daySelection: MultiSelectSegmentedControl!
     @IBOutlet weak var selectRingtone: UIButton!
     // Clocks
-    @IBOutlet weak var myClock1: BEMAnalogClockView!
+    //@IBOutlet weak var myClock1: BEMAnalogClockView!
     // Text Fields
     @IBOutlet weak var timeEntryField: UITextField!
     @IBOutlet weak var labelField: UITextField!
@@ -46,7 +46,7 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
         labelField.delegate = self
         
         // intialize BEMAnalogClock
-        self.initializeClock()
+        // self.initializeClock()
         
         // need this line or scrollView is pushed down
         self.navigationController.navigationBar.translucent = false;
@@ -92,7 +92,7 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
     // ---------------------------------------------------------------------------------------------
     // BEMAnalogClock
     // ---------------------------------------------------------------------------------------------
-    func initializeClock() {
+    /*func initializeClock() {
         var blueTint = UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0)
         let IBSize = myClock1.bounds.size.height
         
@@ -127,7 +127,7 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
     
     func analogClock(clock: BEMAnalogClockView!, graduationColorForIndex index: Int) -> UIColor! {
         return UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-    }
+    }*/
     
     // ---------------------------------------------------------------------------------------------
     // textField
@@ -314,7 +314,7 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
         let dir = directories[0]; //documents directory
         let path = dir.stringByAppendingPathComponent(file);
         
-        //println(path)
+        println(path)
         
         var currentContents: String
         var fileExists = NSFileManager.defaultManager().fileExistsAtPath(path)
@@ -326,11 +326,14 @@ class AddAlarmViewController: UIViewController, UITextFieldDelegate, UIScrollVie
         
         var text = a.label! + "\n" + a.time! + "\n" + String(a.AMPMbutton!) + "\n"
         var stringOfDays = ""
-        if let x = a.days {
+        if let x = a.days? {
             var index = a.days?.firstIndex
-            while index != NSNotFound {
+            while index != Foundation.NSNotFound {
                 stringOfDays += String(index! as Int) + " "
                 index = a.days?.indexGreaterThanIndex(index!)
+            }
+            if stringOfDays != "" {
+                stringOfDays = stringOfDays.substringToIndex(stringOfDays.endIndex.predecessor())
             }
         }
         text += stringOfDays + "\n"

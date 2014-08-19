@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmListTableViewController: UITableViewController {
+class AlarmListTableViewController: UITableViewController, BEMAnalogClockDelegate {
     
     var alarmList = [AlarmItem]()
     
@@ -32,7 +32,7 @@ class AlarmListTableViewController: UITableViewController {
             currentContents = ""
         }
         var alarmComponents = currentContents.componentsSeparatedByString("\n")
-        
+        //println(alarmComponents)
         var index = 0
         while (index + 2) < alarmComponents.count {
             var alarm1 = AlarmItem()
@@ -44,6 +44,7 @@ class AlarmListTableViewController: UITableViewController {
                 var days = alarmComponents[index+3].componentsSeparatedByString(" ")
                 var set = NSMutableIndexSet()
                 for index in days {
+                    //println("index is \(index)")
                     set.addIndex(index.toInt()!)
                 }
                 alarm1.days = set
@@ -104,7 +105,7 @@ class AlarmListTableViewController: UITableViewController {
                 
                 if let x = alarmData.days? {
                     var index = alarmData.days?.firstIndex
-                    while index != NSNotFound {
+                    while index != Foundation.NSNotFound {
                         switch (index! as Int) {
                         case 0:
                             detailText += "Mon "
@@ -128,13 +129,65 @@ class AlarmListTableViewController: UITableViewController {
                 }
             }
         cell.detailTextLabel.text = detailText
-        var image: UIImage
-        cell.imageView.image = UIImage(named: "Icon-60@2x.png")
-
+        
+        
+        var clock = BEMAnalogClockView(frame: CGRectMake(105, 100, 100, 100))
+        clock.backgroundColor = view.backgroundColor
+        clock.delegate = self
+        setupClock(clock)
+        var hours: String
+        var minutes: String
+        if String(Array(alarmData.time!)[2]) == ":" {
+            hours = String(Array(alarmData.time!)[0]) + String(Array(alarmData.time!)[1])
+            minutes = String(Array(alarmData.time!)[3]) + String(Array(alarmData.time!)[4])
+        } else {
+            hours = String(Array(alarmData.time!)[0])
+            minutes = String(Array(alarmData.time!)[2]) + String(Array(alarmData.time!)[3])
+        }
+        clock.hours = hours.toInt()!
+        clock.minutes = minutes.toInt()!
+        
+        var img = imageFromView(clock)
+        cell.imageView.image = img
+        
         return cell
     }
     
+    func imageFromView(view: BEMAnalogClockView) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0)
+        var ctx = UIGraphicsGetCurrentContext()
+        
+//        CGContextConcatCTM(ctx, CGAffineTransformMakeRotation((30.0 as CGFloat)*(3.1415/180)))
+        view.layer.renderInContext(ctx)
+        var img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img
+    }
+    
+    func setupClock(myClock1: BEMAnalogClockView) {
+        let clockSize = myClock1.bounds.size.height
+        myClock1.enableShadows = true;
+        myClock1.faceBackgroundColor = UIColor.blackColor()
+        myClock1.borderColor = UIColor.whiteColor()
+        myClock1.borderWidth = 3;
+        myClock1.enableGraduations = true
+        myClock1.secondHandColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        myClock1.minuteHandLength = clockSize * 0.3
+        myClock1.secondHandLength = myClock1.minuteHandLength * 0.75
+        myClock1.hourHandLength = myClock1.minuteHandLength * 0.5
+    }
 
+    func analogClock(clock: BEMAnalogClockView!, graduationLengthForIndex index: Int) -> CGFloat {
+        if (index % 5 == 0){
+            return 20; // The length of one graduation in every five graduation will be 20.
+        } else {
+            return 5; // The length of the rest of the graduations will be 5.
+        }
+    }
+    
+    func analogClock(clock: BEMAnalogClockView!, graduationColorForIndex index: Int) -> UIColor! {
+        return UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
