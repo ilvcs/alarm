@@ -9,6 +9,9 @@
 import UIKit
 
 class AlarmItem: NSObject {
+    
+    var uniqueID: Int?
+    
     var time: String?
     var AMPMbutton: Int?
     var days: NSMutableIndexSet?

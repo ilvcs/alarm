@@ -58,13 +58,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "alarm/AddAlarmViewController.swift"
-            timestampString = "430021023.942545"
+            timestampString = "430117140.328255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
-            landmarkName = "doShit(_:)"
-            landmarkType = "5">
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "AddAlarmViewController"
+            landmarkType = "3">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -104,11 +104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "alarm/AlarmItem.swift"
-            timestampString = "429240643.438487"
+            timestampString = "430116520.05421"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
             landmarkName = "AlarmItem"
             landmarkType = "3">
          </BreakpointContent>
@@ -152,13 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "alarm/AddAlarmViewController.swift"
-            timestampString = "430063467.596734"
+            timestampString = "430124383.904479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "345"
-            endingLineNumber = "345"
-            landmarkName = "writeToFile(_:)"
-            landmarkType = "5">
+            startingLineNumber = "297"
+            endingLineNumber = "297">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -168,13 +166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "alarm/AddAlarmViewController.swift"
-            timestampString = "430063467.596734"
+            timestampString = "430124383.904479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
-            landmarkName = "AddAlarmViewController"
-            landmarkType = "3">
+            startingLineNumber = "298"
+            endingLineNumber = "298">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -254,6 +250,22 @@
             startingLineNumber = "178"
             endingLineNumber = "178"
             landmarkName = "-layoutSubviews"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "alarm/AddAlarmViewController.swift"
+            timestampString = "430124153.928628"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
+            landmarkName = "packageAlarmData()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -18,7 +18,7 @@ class SongPickerTableViewController: UITableViewController {
         
         songList = [AnyObject]()
         var ringtonePath = NSBundle.mainBundle().resourcePath
-        ringtonePath = ringtonePath.stringByAppendingPathComponent("Ringtones")
+        ringtonePath = ringtonePath!.stringByAppendingPathComponent("Ringtones")
         var ringtoneContents = NSFileManager.defaultManager().contentsOfDirectoryAtPath(ringtonePath, error: nil)
         songList = ringtoneContents
     }
